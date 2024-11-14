@@ -19,11 +19,11 @@ public class UserController {
 
   @PostMapping("/")
   public ResponseEntity<String> registerUser(@Valid @RequestBody RegisterUserRequest request) {
-    final var result = request.isBusiness
-        // TODO - 1: implement the asBusinessUser method
-        ? userService.register(request.asBusinessUser())
-        // TODO - 2: implement the asUser method
-        : userService.register(request.asUser());
+    final var result = !request.isBusiness
+        // TODO - 1: implement the asUser method
+        ? userService.register(request.asUser())
+        // TODO - 2: implement the asBusinessUser method
+        : userService.register(request.asBusinessUser());
 
     // TODO - 3: returns a 200 OK response with the email in the body when result is success
 

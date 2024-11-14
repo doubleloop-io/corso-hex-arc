@@ -1,5 +1,6 @@
 package io.doubleloop.driverimplicit;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -19,6 +20,7 @@ class UserControllerTest {
   @Autowired
   private MockMvc mockMvc;
 
+  @Disabled("Implement TODO 1 and 3")
   @Test
   void registerValidUser() throws Exception {
     final var json = "{" +
@@ -33,6 +35,7 @@ class UserControllerTest {
         .andExpect(content().string(containsString("foo@bar.it")));
   }
 
+  @Disabled("Implement TODO 2 and 3")
   @Test
   void registerValidBusinessUser() throws Exception {
     final var json = "{" +
@@ -90,6 +93,7 @@ class UserControllerTest {
         .andExpect(status().isBadRequest());
   }
 
+  @Disabled("Implement TODO 2 and 4")
   @Test
   void registerDuplicatedEmail() throws Exception {
     final var json = "{" +
@@ -104,6 +108,7 @@ class UserControllerTest {
         .andExpect(content().string("DUPLICATED_EMAIL"));
   }
 
+  @Disabled("Implement TODO 3 and 4")
   @Test
   void registerUnregisteredPIVA() throws Exception {
     final var json = "{" +
