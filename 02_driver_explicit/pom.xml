@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>00_driver_explicit</artifactId>
+  <artifactId>02_driver_explicit</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <dependencies>
