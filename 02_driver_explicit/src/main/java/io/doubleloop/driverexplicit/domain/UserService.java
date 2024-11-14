@@ -1,24 +1,28 @@
 package io.doubleloop.driverexplicit.domain;
 
+import io.doubleloop.driverexplicit.SpringUserStorage;
 import org.springframework.stereotype.Service;
 
-// NOTE: just a demo/fake implementation
+// TODO - 1: remove class in DefaultUserService
+// TODO - 2: extract UserService interface from DefaultUserService
 @Service
 public class UserService {
 
-  public RegisterUserResult register(RegisterUserCommand request) {
-    if (request.email.contains("duplicated"))
-      return RegisterUserResult.error(RegisterUserError.DUPLICATED_EMAIL);
+  private final SpringUserStorage userStorage;
+  private final HashService hashService;
 
-    return RegisterUserResult.success();
+  public UserService(SpringUserStorage userStorage, HashService hashService) {
+    this.userStorage = userStorage;
+    this.hashService = hashService;
   }
 
-  public RegisterUserResult register(RegisterBusinessUserCommand request) {
-    if (request.email.contains("duplicated"))
+  public RegisterUserResult register(RegisterUserCommand request) {
+
+    final var duplicated = userStorage.findByEmail(request.email);
+    if (duplicated.isPresent())
       return RegisterUserResult.error(RegisterUserError.DUPLICATED_EMAIL);
 
-    if (request.PIVA.contains("0000"))
-      return RegisterUserResult.error(RegisterUserError.UNREGISTERED_PIVA);
+    userStorage.save(new User(request.email, hashService.sha256(request.password)));
 
     return RegisterUserResult.success();
   }

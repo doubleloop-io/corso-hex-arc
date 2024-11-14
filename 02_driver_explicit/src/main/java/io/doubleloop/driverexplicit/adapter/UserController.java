@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/users")
 public class UserController {
 
+  // TODO - 3: be sure to depends from UserService and not DefaultUserService
   private final UserService userService;
 
   public UserController(UserService userService) {
@@ -20,9 +21,7 @@ public class UserController {
 
   @PostMapping("/")
   public ResponseEntity<String> registerUser(@Valid @RequestBody RegisterUserRequest request) {
-    final var result = request.isBusiness
-        ? userService.register(request.asBusinessUser())
-        : userService.register(request.asUser());
+    final var result = userService.register(request.asUser());
 
     if (result.isSuccess())
       return ResponseEntity.ok(request.email);
