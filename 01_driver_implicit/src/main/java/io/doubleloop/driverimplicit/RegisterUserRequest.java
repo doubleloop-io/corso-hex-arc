@@ -17,10 +17,12 @@ public class RegisterUserRequest {
   public String PIVA;
 
   RegisterBusinessUserCommand asBusinessUser() {
-    return new RegisterBusinessUserCommand(email, password, PIVA);
+    // TODO: create a valid Command instance
+    throw new NotImplementedException();
   }
 
   RegisterUserCommand asUser() {
-    return new RegisterUserCommand(email, password);
+    // TODO: create a valid Command instance
+    throw new NotImplementedException();
   }
 }
