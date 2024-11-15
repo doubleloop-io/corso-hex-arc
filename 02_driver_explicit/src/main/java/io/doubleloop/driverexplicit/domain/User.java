@@ -19,6 +19,14 @@ public class User {
     this.passwordHash = passwordHash;
   }
 
+  public String getId() {
+    return id;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (o == null || getClass() != o.getClass()) return false;

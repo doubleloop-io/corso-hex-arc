@@ -3,7 +3,7 @@ package io.doubleloop.driverexplicit.domain;
 import io.doubleloop.driverexplicit.SpringUserStorage;
 import org.springframework.stereotype.Service;
 
-// TODO - 1: remove class in DefaultUserService
+// TODO - 1: rename class in DefaultUserService
 // TODO - 2: extract UserService interface from DefaultUserService
 @Service
 public class UserService {
@@ -16,14 +16,21 @@ public class UserService {
     this.hashService = hashService;
   }
 
-  public RegisterUserResult register(RegisterUserCommand request) {
+  public RegisterUserResult register(RegisterUserCommand command) {
 
-    final var duplicated = userStorage.findByEmail(request.email);
+    final var duplicated = userStorage.findByEmail(command.email);
     if (duplicated.isPresent())
       return RegisterUserResult.error(RegisterUserError.DUPLICATED_EMAIL);
 
-    userStorage.save(new User(request.email, hashService.sha256(request.password)));
+    userStorage.save(new User(command.email, hashService.sha256(command.password)));
 
     return RegisterUserResult.success();
+  }
+
+  public GetUserResult getUserResult(GetUserQuery query) {
+    final var user = userStorage.findByEmail(query.email);
+    return user
+        .map(GetUserResult::success)
+        .orElseGet(GetUserResult::notFound);
   }
 }
