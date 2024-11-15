@@ -2,7 +2,7 @@ package io.doubleloop.driverimplicit;
 
 import org.springframework.stereotype.Service;
 
-// NOTE: just a demo/fake implementation
+// NOTE: Just a demo/fake implementation
 @Service
 public class UserService {
 

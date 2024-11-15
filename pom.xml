@@ -13,6 +13,7 @@
         <module>00_problems</module>
         <module>01_driver_implicit</module>
         <module>02_driver_explicit</module>
+        <module>03_driver_reactive</module>
     </modules>
 
     <properties>

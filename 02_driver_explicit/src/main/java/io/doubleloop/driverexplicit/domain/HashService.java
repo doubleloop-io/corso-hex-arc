@@ -6,7 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-// NOTE: just a demo implementation
+// NOTE: Just a demo implementation
 @Service
 public class HashService {
 
