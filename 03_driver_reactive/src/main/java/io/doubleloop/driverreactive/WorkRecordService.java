@@ -1,4 +1,4 @@
-package io.doubleloop.driverreactive.domain;
+package io.doubleloop.driverreactive;
 
 public interface WorkRecordService {
   void onAddWorkRecord(AddWorkRecordCommand command);

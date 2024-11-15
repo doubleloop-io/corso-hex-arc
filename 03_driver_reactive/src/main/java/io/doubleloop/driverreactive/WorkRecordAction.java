@@ -1,4 +1,4 @@
-package io.doubleloop.driverreactive.adapter;
+package io.doubleloop.driverreactive;
 
 public enum WorkRecordAction {
   ADD, REMOVE

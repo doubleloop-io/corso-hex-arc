@@ -1,6 +1,5 @@
-package io.doubleloop.driverexplicit.adapter;
+package io.doubleloop.driverexplicit;
 
-import io.doubleloop.driverexplicit.domain.RegisterUserCommand;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 

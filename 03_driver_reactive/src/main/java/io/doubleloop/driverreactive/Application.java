@@ -1,6 +1,5 @@
 package io.doubleloop.driverreactive;
 
-import io.doubleloop.driverreactive.adapter.WorkRecordConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Binding;
@@ -17,8 +16,8 @@ import org.springframework.context.annotation.Bean;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
-import static io.doubleloop.driverreactive.adapter.WorkRecordConsumer.queueName;
-import static io.doubleloop.driverreactive.adapter.WorkRecordDemoSender.topicExchangeName;
+import static io.doubleloop.driverreactive.WorkRecordConsumer.queueName;
+import static io.doubleloop.driverreactive.WorkRecordDemoSender.topicExchangeName;
 
 @SpringBootApplication
 public class Application {

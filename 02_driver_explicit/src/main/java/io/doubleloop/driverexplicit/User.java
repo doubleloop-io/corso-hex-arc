@@ -1,4 +1,4 @@
-package io.doubleloop.driverexplicit.domain;
+package io.doubleloop.driverexplicit;
 
 import org.springframework.data.annotation.Id;
 

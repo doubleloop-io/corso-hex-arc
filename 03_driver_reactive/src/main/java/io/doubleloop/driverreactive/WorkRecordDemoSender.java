@@ -1,4 +1,4 @@
-package io.doubleloop.driverreactive.adapter;
+package io.doubleloop.driverreactive;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

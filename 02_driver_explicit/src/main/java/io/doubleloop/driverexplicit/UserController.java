@@ -1,6 +1,5 @@
-package io.doubleloop.driverexplicit.adapter;
+package io.doubleloop.driverexplicit;
 
-import io.doubleloop.driverexplicit.domain.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

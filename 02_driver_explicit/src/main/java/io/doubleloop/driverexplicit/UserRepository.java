@@ -1,6 +1,5 @@
 package io.doubleloop.driverexplicit;
 
-import io.doubleloop.driverexplicit.domain.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;

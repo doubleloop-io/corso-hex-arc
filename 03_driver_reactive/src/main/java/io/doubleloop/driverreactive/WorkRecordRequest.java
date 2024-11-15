@@ -1,9 +1,4 @@
-package io.doubleloop.driverreactive.adapter;
-
-import io.doubleloop.driverreactive.domain.AddWorkRecordCommand;
-import io.doubleloop.driverreactive.domain.Hours;
-import io.doubleloop.driverreactive.domain.RemoveWorkRecordCommand;
-import io.doubleloop.driverreactive.domain.UserId;
+package io.doubleloop.driverreactive;
 
 import java.time.LocalDate;
 import java.util.UUID;

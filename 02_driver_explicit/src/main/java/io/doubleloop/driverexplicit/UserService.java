@@ -1,6 +1,5 @@
-package io.doubleloop.driverexplicit.domain;
+package io.doubleloop.driverexplicit;
 
-import io.doubleloop.driverexplicit.UserRepository;
 import org.springframework.stereotype.Service;
 
 // TODO - 1: rename class in DefaultUserService
