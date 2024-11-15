@@ -15,6 +15,7 @@
         <module>02_driver_explicit</module>
         <module>03_driver_reactive</module>
         <module>04_driven_pull</module>
+        <module>05_driven_push</module>
     </modules>
 
     <properties>
