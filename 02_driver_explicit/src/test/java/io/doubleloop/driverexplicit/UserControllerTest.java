@@ -31,16 +31,16 @@ class UserControllerTest {
   @ServiceConnection
   private static MongoDBContainer container = new MongoDBContainer("mongo:latest");
 
-  // TODO - 5: remove Autowired userStorage field
+  // TODO - 5: remove Autowired field
   @Autowired
-  private SpringUserStorage userStorage;
+  private UserRepository userRepository;
 
   // TODO - 6: define a UserService interface mock field with @MockBean annotation
 
   // TODO - 7: completely remove setUp method and the necessity to clean up the database
   @BeforeEach
   void setUp() {
-    userStorage.deleteAll();
+    userRepository.deleteAll();
   }
 
   // TODO - 8: add a when expression the return different UserService's result based on test case
@@ -87,7 +87,7 @@ class UserControllerTest {
 
   @Test
   void registerDuplicatedEmail() throws Exception {
-    userStorage.save(new User("duplicated@bar.it", "123456"));
+    userRepository.save(new User("duplicated@bar.it", "123456"));
 
     final var json = "{" +
         "\"email\": \"duplicated@bar.it\"," +

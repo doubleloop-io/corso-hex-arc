@@ -1,6 +1,6 @@
 package io.doubleloop.driverexplicit.domain;
 
-import io.doubleloop.driverexplicit.SpringUserStorage;
+import io.doubleloop.driverexplicit.UserRepository;
 import org.springframework.stereotype.Service;
 
 // TODO - 1: rename class in DefaultUserService
@@ -8,27 +8,27 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-  private final SpringUserStorage userStorage;
+  private final UserRepository userRepository;
   private final HashService hashService;
 
-  public UserService(SpringUserStorage userStorage, HashService hashService) {
-    this.userStorage = userStorage;
+  public UserService(UserRepository userRepository, HashService hashService) {
+    this.userRepository = userRepository;
     this.hashService = hashService;
   }
 
   public RegisterUserResult register(RegisterUserCommand command) {
 
-    final var duplicated = userStorage.findByEmail(command.email);
+    final var duplicated = userRepository.findByEmail(command.email);
     if (duplicated.isPresent())
       return RegisterUserResult.error(RegisterUserError.DUPLICATED_EMAIL);
 
-    userStorage.save(new User(command.email, hashService.sha256(command.password)));
+    userRepository.save(new User(command.email, hashService.sha256(command.password)));
 
     return RegisterUserResult.success();
   }
 
   public GetUserResult getUserResult(GetUserQuery query) {
-    final var user = userStorage.findByEmail(query.email);
+    final var user = userRepository.findByEmail(query.email);
     return user
         .map(GetUserResult::success)
         .orElseGet(GetUserResult::notFound);
