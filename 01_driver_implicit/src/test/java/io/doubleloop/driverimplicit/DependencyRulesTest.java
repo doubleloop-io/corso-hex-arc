@@ -8,9 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class DependencyRulesTest {
 
-  private final String ROOT_PACKAGE = "io.doubleloop.driverimplicit";
-
-  private final JavaClasses classes = new ClassFileImporter().importPackages(ROOT_PACKAGE);
+  private final JavaClasses classes = new ClassFileImporter().importPackages(DependencyRulesTest.class.getPackageName());
 
   @Disabled("Run after moving classes into various packages")
   @Test
@@ -27,7 +25,7 @@ class DependencyRulesTest {
   void appStayInTheRootPackage() {
     ArchRuleDefinition
         .theClass(Application.class)
-        .should().resideInAPackage(ROOT_PACKAGE)
+        .should().resideInAPackage(DependencyRulesTest.class.getPackageName())
         .check(classes);
   }
 }
