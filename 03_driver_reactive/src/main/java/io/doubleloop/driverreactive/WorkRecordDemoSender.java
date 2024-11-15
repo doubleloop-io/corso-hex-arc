@@ -13,7 +13,7 @@ import java.time.temporal.ChronoUnit;
 @Component
 public class WorkRecordDemoSender implements CommandLineRunner {
 
-  public static final String topicExchangeName = "work_hours";
+  public static final String exchangeName = "work_hours";
 
   private static final Logger log = LoggerFactory.getLogger(WorkRecordDemoSender.class);
 
@@ -34,9 +34,9 @@ public class WorkRecordDemoSender implements CommandLineRunner {
     final var today = LocalDate.now();
     final var yesterday = today.minus(1, ChronoUnit.DAYS);
 
-    rabbitTemplate.convertAndSend(topicExchangeName, "", addWorkHoursOn(yesterday, 10));
-    rabbitTemplate.convertAndSend(topicExchangeName, "", addWorkHoursOn(today, 6));
-    rabbitTemplate.convertAndSend(topicExchangeName, "", removeWorkHoursOn(today));
+    rabbitTemplate.convertAndSend(exchangeName, "", addWorkHoursOn(yesterday, 10));
+    rabbitTemplate.convertAndSend(exchangeName, "", addWorkHoursOn(today, 6));
+    rabbitTemplate.convertAndSend(exchangeName, "", removeWorkHoursOn(today));
   }
 
   private String addWorkHoursOn(LocalDate date, int hours) {

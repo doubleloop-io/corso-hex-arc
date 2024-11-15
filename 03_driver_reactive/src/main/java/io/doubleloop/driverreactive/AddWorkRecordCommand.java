@@ -3,14 +3,26 @@ package io.doubleloop.driverreactive;
 import java.time.LocalDate;
 
 public class AddWorkRecordCommand {
-  private final UserId userId;
-  private final Hours hours;
-  private final LocalDate date;
+  private UserId userId;
+  private Hours hours;
+  private LocalDate date;
 
   public AddWorkRecordCommand(UserId userId, Hours hours, LocalDate date) {
     this.userId = userId;
     this.hours = hours;
     this.date = date;
+  }
+
+  public UserId getUserId() {
+    return userId;
+  }
+
+  public Hours getHours() {
+    return hours;
+  }
+
+  public LocalDate getDate() {
+    return date;
   }
 
   @Override

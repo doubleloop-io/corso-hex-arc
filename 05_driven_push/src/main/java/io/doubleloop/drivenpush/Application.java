@@ -1,9 +1,23 @@
-package io.doubleloop.drivenpull;
+package io.doubleloop.drivenpush;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
+import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
+
+import static io.doubleloop.drivenpush.DefaultPostService.exchangeName;
+import static io.doubleloop.drivenpush.DemoMessageConsumer.queueName;
 
 @SpringBootApplication
 public class Application {
@@ -15,4 +29,38 @@ public class Application {
     log.info("Ready!");
   }
 
+  @Bean
+  Queue queue() {
+    return new Queue(queueName, false);
+  }
+
+  @Bean
+  TopicExchange exchange() {
+    return new TopicExchange(exchangeName);
+  }
+
+  @Bean
+  Binding binding(Queue queue, TopicExchange exchange) {
+    return BindingBuilder.bind(queue).to(exchange).with("posts.*.new");
+  }
+
+  @Bean
+  SimpleMessageListenerContainer container(ConnectionFactory connectionFactory,
+                                           MessageListenerAdapter listenerAdapter) {
+    SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
+    container.setConnectionFactory(connectionFactory);
+    container.setQueueNames(queueName);
+    container.setMessageListener(listenerAdapter);
+    return container;
+  }
+
+  @Bean
+  MessageListenerAdapter listenerAdapter(DemoMessageConsumer consumer) {
+    return new MessageListenerAdapter(consumer, "receiveMessage");
+  }
+
+  @Bean
+  Jsonb json() {
+    return JsonbBuilder.create();
+  }
 }

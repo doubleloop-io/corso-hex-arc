@@ -17,19 +17,19 @@ public class UserService {
 
   public RegisterUserResult register(RegisterUserCommand command) {
 
-    final var duplicated = userRepository.findByEmail(command.email);
+    final var duplicated = userRepository.findByEmail(command.getEmail());
     if (duplicated.isPresent())
       return RegisterUserResult.error(RegisterUserError.DUPLICATED_EMAIL);
 
-    userRepository.save(new User(command.email, hashService.sha256(command.password)));
+    userRepository.save(new User(command.getEmail(), hashService.sha256(command.getPassword())));
 
     return RegisterUserResult.success();
   }
 
   public GetUserResult getUserResult(GetUserQuery query) {
-    final var user = userRepository.findByEmail(query.email);
-    return user
-        .map(GetUserResult::success)
-        .orElseGet(GetUserResult::notFound);
+    final var found = userRepository.findByEmail(query.getEmail());
+    if (found.isEmpty())
+      throw new IllegalArgumentException("User not found");
+    return new GetUserResult(found.get());
   }
 }

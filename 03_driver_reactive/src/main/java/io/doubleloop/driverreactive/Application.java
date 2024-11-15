@@ -17,7 +17,7 @@ import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
 import static io.doubleloop.driverreactive.WorkRecordConsumer.queueName;
-import static io.doubleloop.driverreactive.WorkRecordDemoSender.topicExchangeName;
+import static io.doubleloop.driverreactive.WorkRecordDemoSender.exchangeName;
 
 @SpringBootApplication
 public class Application {
@@ -36,7 +36,7 @@ public class Application {
 
   @Bean
   TopicExchange exchange() {
-    return new TopicExchange(topicExchangeName);
+    return new TopicExchange(exchangeName);
   }
 
   @Bean
@@ -55,8 +55,8 @@ public class Application {
   }
 
   @Bean
-  MessageListenerAdapter listenerAdapter(WorkRecordConsumer receiver) {
-    return new MessageListenerAdapter(receiver, "receiveMessage");
+  MessageListenerAdapter listenerAdapter(WorkRecordConsumer consumer) {
+    return new MessageListenerAdapter(consumer, "receiveMessage");
   }
 
   @Bean

@@ -3,12 +3,20 @@ package io.doubleloop.driverreactive;
 import java.time.LocalDate;
 
 public class RemoveWorkRecordCommand {
-  private final UserId userId;
-  private final LocalDate date;
+  private UserId userId;
+  private LocalDate date;
 
   public RemoveWorkRecordCommand(UserId userId, LocalDate date) {
     this.userId = userId;
     this.date = date;
+  }
+
+  public UserId getUserId() {
+    return userId;
+  }
+
+  public LocalDate getDate() {
+    return date;
   }
 
   @Override
