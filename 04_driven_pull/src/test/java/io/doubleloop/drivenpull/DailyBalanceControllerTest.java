@@ -27,7 +27,7 @@ class DailyBalanceControllerTest {
 
   @Test
   void dailyUserBalance() throws Exception {
-    final var result = new BalanceResult("123", LocalDate.now(), BigDecimal.valueOf(100));
+    final var result = new BalanceResult("123", LocalDate.of(2024, 11, 15), BigDecimal.valueOf(100));
     when(dailyBalanceService.balanceOn(Mockito.any())).thenReturn(result);
 
     mockMvc.perform(get("/api/balance/daily/123"))
