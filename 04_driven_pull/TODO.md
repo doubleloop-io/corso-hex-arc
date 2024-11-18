@@ -7,11 +7,11 @@
 - [ ] Rinomina la classe
   infrastrutturale [OperationRepository](src/main/java/io/doubleloop/drivenpull/OperationRepository.java) aggiungendo un
   prefisso che identifica la tecnologia utilizzata.
-- [ ] Estrai l'interfaccia `OperationRepository` di dominio.
+- [ ] Estrai l'interfaccia `OperationRepository` di dominio ed usala in [DefaultDailyBalanceService](src/main/java/io/doubleloop/drivenpull/DefaultDailyBalanceService.java) al posto della relativa classe.
 - [ ] Rinomina la classe
   infrastrutturale [ExchangeProvider](src/main/java/io/doubleloop/drivenpull/ExchangeProvider.java) aggiungendo un
   prefisso che identifica la tecnologia utilizzata.
-- [ ] Estrai l'interfaccia `ExchangeProvider` di dominio.
+- [ ] Estrai l'interfaccia `ExchangeProvider` di dominio ed usala in [DefaultDailyBalanceService](src/main/java/io/doubleloop/drivenpull/DefaultDailyBalanceService.java) al posto della relativa classe.
 - [ ] Elimina l'uso del container MongoDB e del vero repository dalla
   suite [DefaultDailyBalanceServiceTest](src/test/java/io/doubleloop/drivenpull/DefaultDailyBalanceServiceTest.java).
 - [ ] Sposta i file nei rispettivi package/folder in base alla responsabilità.
