@@ -2,8 +2,6 @@ package io.doubleloop.driverexplicit;
 
 import org.springframework.stereotype.Service;
 
-// TODO - 1: rename class in DefaultUserService
-// TODO - 2: extract UserService interface from DefaultUserService
 @Service
 public class UserService {
 

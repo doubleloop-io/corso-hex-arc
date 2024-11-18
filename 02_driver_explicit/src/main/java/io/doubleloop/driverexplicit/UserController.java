@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/users")
 public class UserController {
 
-  // TODO - 3: be sure to depends from UserService and not DefaultUserService
   private final UserService userService;
 
   public UserController(UserService userService) {
