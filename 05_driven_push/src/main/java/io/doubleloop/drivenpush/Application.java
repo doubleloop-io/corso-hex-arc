@@ -26,7 +26,7 @@ public class Application {
 
   public static void main(String[] args) {
     SpringApplication.run(Application.class, args);
-    log.info("Ready!");
+    log.info("{} Ready!", Application.class.getTypeName());
   }
 
   @Bean

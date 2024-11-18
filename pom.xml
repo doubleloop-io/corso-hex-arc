@@ -16,6 +16,7 @@
         <module>03_driver_reactive</module>
         <module>04_driven_pull</module>
         <module>05_driven_push</module>
+        <module>06_bad_design</module>
     </modules>
 
     <properties>
