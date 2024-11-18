@@ -17,7 +17,7 @@ import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
 import static io.doubleloop.driverreactive.WorkRecordConsumer.queueName;
-import static io.doubleloop.driverreactive.WorkRecordDemoSender.exchangeName;
+import static io.doubleloop.driverreactive.WorkRecordDemoProducer.exchangeName;
 
 @SpringBootApplication
 public class Application {

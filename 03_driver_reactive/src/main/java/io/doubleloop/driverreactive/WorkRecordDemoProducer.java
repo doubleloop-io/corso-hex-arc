@@ -11,18 +11,18 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 @Component
-public class WorkRecordDemoSender implements CommandLineRunner {
+public class WorkRecordDemoProducer implements CommandLineRunner {
 
   public static final String exchangeName = "work_hours";
 
-  private static final Logger log = LoggerFactory.getLogger(WorkRecordDemoSender.class);
+  private static final Logger log = LoggerFactory.getLogger(WorkRecordDemoProducer.class);
 
   private static final String UserId = "d324c79d-a477-4171-945b-dcde2418eefc";
 
   private final RabbitTemplate rabbitTemplate;
   private final Jsonb jsonb;
 
-  public WorkRecordDemoSender(RabbitTemplate rabbitTemplate, Jsonb jsonb) {
+  public WorkRecordDemoProducer(RabbitTemplate rabbitTemplate, Jsonb jsonb) {
     this.rabbitTemplate = rabbitTemplate;
     this.jsonb = jsonb;
   }

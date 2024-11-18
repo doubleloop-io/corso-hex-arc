@@ -17,4 +17,4 @@
 - [ ] Sposta i file nei rispettivi package/folder in base alla responsabilità.
 - [ ] Rimuovi l'annotazione `@Disabled`
   da [DependencyRulesTest](src/test/java/io/doubleloop/driverimplicit/DependencyRulesTest.java#L9) e
-  verifica che tutti i test siano verdi.
+  verifica che i test siano verdi.

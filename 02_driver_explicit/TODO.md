@@ -2,7 +2,8 @@
 
 - [ ] Leggi i test del
   controller [UserControllerTest](src/test/java/io/doubleloop/driverexplicit/UserControllerTest.java), come vedi sono
-  implementati come Integration Test ed utilizzano un container MongoDB per funzionare, a causa dell'accoppiameno ApiController (Adapter) -> DomainService -> Repository.
+  implementati come Integration Test ed utilizzano un container MongoDB per funzionare, a causa dell'accoppiameno
+  ApiController (Adapter) -> DomainService -> Repository.
 - [ ] Rinomina la classe [UserService](src/main/java/io/doubleloop/driverexplicit/UserService.java) in
   `DefaultUserService`.
 - [ ] Estrai l'interfaccia `UserService` partendo
@@ -11,7 +12,8 @@
   di tipo `UserService` (interface).
 - [ ] Aggiungi un field `userService`
   in [UserControllerTest](src/test/java/io/doubleloop/driverexplicit/UserControllerTest.java) e annotalo con `@Mock`.
-- [ ] Aggiungi una `when(userService...).thenReturns(...)` expression in ogni test di [UserControllerTest](src/test/java/io/doubleloop/driverexplicit/UserControllerTest.java) per pilotare lo stub.
+- [ ] Aggiungi una `when(userService...).thenReturns(...)` expression in ogni test
+  di [UserControllerTest](src/test/java/io/doubleloop/driverexplicit/UserControllerTest.java) per pilotare lo stub.
 - [ ] Verifica che tutti i test
   di [UserControllerTest](src/test/java/io/doubleloop/driverexplicit/UserControllerTest.java) siano verdi.
 - [ ] Elimina il field `container` e relative annotazioni

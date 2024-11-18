@@ -19,6 +19,9 @@ public class WorkRecordConsumer {
 
   public void receiveMessage(String message) {
     final var request = jsonb.fromJson(message, WorkRecordRequest.class);
+    if (request.action == null)
+      throw new IllegalArgumentException("Missing action");
+
     final var action = WorkRecordAction.valueOf(request.action);
     switch (action) {
       case ADD -> service.onAddWorkRecord(request.asAddCommand());
