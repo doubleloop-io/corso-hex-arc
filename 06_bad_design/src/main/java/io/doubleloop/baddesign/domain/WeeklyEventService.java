@@ -1,12 +1,12 @@
 package io.doubleloop.baddesign.domain;
 
 import com.slack.api.methods.SlackApiException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.time.LocalDate;
 
-@Component
+@Service
 public class WeeklyEventService {
   private final EventsSchedule eventsSchedule;
   private final AttendeeRegister attendeeRegister;

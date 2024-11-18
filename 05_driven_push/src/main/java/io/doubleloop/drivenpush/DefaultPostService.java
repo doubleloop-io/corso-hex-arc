@@ -1,11 +1,11 @@
 package io.doubleloop.drivenpush;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.json.bind.Jsonb;
 
-@Component
+@Service
 public class DefaultPostService implements PostService {
 
   public static final String exchangeName = "social_network";

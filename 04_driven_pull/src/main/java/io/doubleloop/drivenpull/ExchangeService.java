@@ -1,11 +1,11 @@
 package io.doubleloop.drivenpull;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Map;
 
-@Component
+@Service
 public class ExchangeService {
   public ExchangeRateTable definedOn(LocalDate day){
     return new ExchangeRateTable(httpGetExchangeRatesFromExternalSystem(day));

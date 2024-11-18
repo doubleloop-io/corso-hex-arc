@@ -1,8 +1,8 @@
 package io.doubleloop.drivenpull;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class DefaultDailyBalanceService implements DailyBalanceService {
 
   private final OperationRepository operationRepository;
