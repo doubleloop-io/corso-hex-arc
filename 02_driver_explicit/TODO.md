@@ -7,7 +7,7 @@
   `DefaultUserService`.
 - [ ] Estrai l'interfaccia `UserService` partendo
   dalla classe [DefaultUserService](src/main/java/io/doubleloop/driverexplicit/DefaultUserService.java).
-- [ ] Assicurati che il field [userService](src/main/java/io/doubleloop/driverexplicit/UserController.java#L17) sia
+- [ ] Assicurati che il field [userService](src/main/java/io/doubleloop/driverexplicit/UserController.java#L16) sia
   di tipo `UserService` (interface).
 - [ ] Aggiungi un field `userService`
   in [UserControllerTest](src/test/java/io/doubleloop/driverexplicit/UserControllerTest.java) e annotalo con `@Mock`.
