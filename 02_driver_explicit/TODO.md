@@ -22,7 +22,7 @@
   da [UserControllerTest](src/test/java/io/doubleloop/driverexplicit/UserControllerTest.java).
 - [ ] Verifica che tutti i test
   di [UserControllerTest](src/test/java/io/doubleloop/driverexplicit/UserControllerTest.java) siano verdi.
-- [ ] Sposta i file nei rispettivi package/folder in base alla responsabilità.
+- [ ] Sposta i file nei rispettivi package/folder in base alla loro responsabilità.
 - [ ] Rimuovi l'annotazione `@Disabled`
   da [DependencyRulesTest](src/test/java/io/doubleloop/driverexplicit/DependencyRulesTest.java#L9) e
   verifica che i test siano verdi.

@@ -14,7 +14,7 @@
 - [ ] Rimuovi l'annotazione `@Disabled`
   da [UserControllerNoSpringTest](src/test/java/io/doubleloop/driverimplicit/UserControllerNoSpringTest.java#L9) e
   verifica che tutti i test siano verdi. Un test è fallito, perché?
-- [ ] Sposta i file nei rispettivi package/folder in base alla responsabilità.
+- [ ] Sposta i file nei rispettivi package/folder in base alla loro responsabilità.
 - [ ] Rimuovi l'annotazione `@Disabled`
   da [DependencyRulesTest](src/test/java/io/doubleloop/driverimplicit/DependencyRulesTest.java#L9) e
   verifica che i test siano verdi.
