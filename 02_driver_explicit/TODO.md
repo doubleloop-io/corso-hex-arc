@@ -11,8 +11,7 @@
   di tipo `UserService` (interface).
 - [ ] Aggiungi un field `userService`
   in [UserControllerTest](src/test/java/io/doubleloop/driverexplicit/UserControllerTest.java) e annotalo con `@Mock`.
-- [ ] Aggiungi una `when(...).thenReturns(...)` expression in ogni test di `userService`
-  in [UserControllerTest](src/test/java/io/doubleloop/driverexplicit/UserControllerTest.java) per pilotare lo stub.
+- [ ] Aggiungi una `when(userService...).thenReturns(...)` expression in ogni test di [UserControllerTest](src/test/java/io/doubleloop/driverexplicit/UserControllerTest.java) per pilotare lo stub.
 - [ ] Verifica che tutti i test
   di [UserControllerTest](src/test/java/io/doubleloop/driverexplicit/UserControllerTest.java) siano verdi.
 - [ ] Elimina il field `container` e relative annotazioni
@@ -24,4 +23,4 @@
 - [ ] Sposta i file nei rispettivi package/folder in base alla responsabilità.
 - [ ] Rimuovi l'annotazione `@Disabled`
   da [DependencyRulesTest](src/test/java/io/doubleloop/driverexplicit/DependencyRulesTest.java#L9) e
-  verifica che tutti i test siano verdi.
+  verifica che i test siano verdi.
