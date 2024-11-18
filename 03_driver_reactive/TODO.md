@@ -8,5 +8,5 @@
   relative dipendenze, in particolare osserva il dispatch al service basato sul tipo di action richiesta.
 - [ ] Sposta i file nei rispettivi package/folder in base alla responsabilità.
 - [ ] Rimuovi l'annotazione `@Disabled`
-  da [DependencyRulesTest](src/test/java/io/doubleloop/driverimplicit/DependencyRulesTest.java#L9) e verifica che i test
+  da [DependencyRulesTest](src/test/java/io/doubleloop/driverreactive/DependencyRulesTest.java#L9) e verifica che i test
   siano verdi.

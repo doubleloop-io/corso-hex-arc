@@ -26,7 +26,7 @@ class DefaultDailyBalanceServiceTest {
   @Autowired
   private OperationRepository operationRepository;
   @Autowired
-  private ExchangeService exchangeService;
+  private ExchangeProvider exchangeProvider;
 
   private static final LocalDate today = LocalDate.now();
   private static final LocalDate yesterday = LocalDate.now().minusDays(1);
@@ -38,7 +38,7 @@ class DefaultDailyBalanceServiceTest {
 
   @Test
   void noOperations() {
-    final var service = new DefaultDailyBalanceService(operationRepository, exchangeService);
+    final var service = new DefaultDailyBalanceService(operationRepository, exchangeProvider);
 
     final var result = service.balanceOn(new BalanceOnQuery("user1", today));
 
@@ -50,7 +50,7 @@ class DefaultDailyBalanceServiceTest {
     operationRepository.save(new Operation("user1", "EUR", BigDecimal.valueOf(100), today));
     operationRepository.save(new Operation("user1", "EUR", BigDecimal.valueOf(100), today));
 
-    final var service = new DefaultDailyBalanceService(operationRepository, exchangeService);
+    final var service = new DefaultDailyBalanceService(operationRepository, exchangeProvider);
 
     final var result = service.balanceOn(new BalanceOnQuery("user1", today));
 
@@ -62,7 +62,7 @@ class DefaultDailyBalanceServiceTest {
     operationRepository.save(new Operation("user1", "EUR", BigDecimal.valueOf(10), yesterday));
     operationRepository.save(new Operation("user1", "EUR", BigDecimal.valueOf(100), today));
 
-    final var service = new DefaultDailyBalanceService(operationRepository, exchangeService);
+    final var service = new DefaultDailyBalanceService(operationRepository, exchangeProvider);
 
     final var result = service.balanceOn(new BalanceOnQuery("user1", yesterday));
 
@@ -74,7 +74,7 @@ class DefaultDailyBalanceServiceTest {
     operationRepository.save(new Operation("user1", "EUR", BigDecimal.valueOf(100), today));
     operationRepository.save(new Operation("user2", "EUR", BigDecimal.valueOf(10), today));
 
-    final var service = new DefaultDailyBalanceService(operationRepository, exchangeService);
+    final var service = new DefaultDailyBalanceService(operationRepository, exchangeProvider);
 
     final var result = service.balanceOn(new BalanceOnQuery("user1", today));
 
@@ -87,7 +87,7 @@ class DefaultDailyBalanceServiceTest {
     operationRepository.save(new Operation("user1", "USD", BigDecimal.valueOf(10), today));
     operationRepository.save(new Operation("user1", "GBP", BigDecimal.valueOf(25), today));
 
-    final var service = new DefaultDailyBalanceService(operationRepository, exchangeService);
+    final var service = new DefaultDailyBalanceService(operationRepository, exchangeProvider);
 
     final var result = service.balanceOn(new BalanceOnQuery("user1", today));
 

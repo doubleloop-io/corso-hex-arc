@@ -6,20 +6,20 @@ import org.springframework.stereotype.Service;
 public class DefaultDailyBalanceService implements DailyBalanceService {
 
   private final OperationRepository operationRepository;
-  private final ExchangeService exchangeService;
+  private final ExchangeProvider exchangeProvider;
 
   public DefaultDailyBalanceService(
       OperationRepository operationRepository,
-      ExchangeService exchangeService
+      ExchangeProvider exchangeProvider
   ) {
     this.operationRepository = operationRepository;
-    this.exchangeService = exchangeService;
+    this.exchangeProvider = exchangeProvider;
   }
 
   @Override
   public BalanceResult balanceOn(BalanceOnQuery query) {
     final var operations = operationRepository.findByUserIdAndDate(query.userId, query.date);
-    final var exchangeTable = exchangeService.definedOn(query.date);
+    final var exchangeTable = exchangeProvider.definedOn(query.date);
 
     final var balance = new OperationList(operations)
         .balance(exchangeTable);
