@@ -6,11 +6,11 @@ import org.springframework.http.HttpStatus;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Disabled
 class UserControllerNoSpringTest {
 
-  @Disabled("Implement TODO 1 and 3")
   @Test
-  void registerValidUser() throws Exception {
+  void registerValidUser() {
     final var controller = new UserController(new UserService());
     final var request = new RegisterUserRequest();
     request.email = "foo@bar.it";
@@ -21,9 +21,8 @@ class UserControllerNoSpringTest {
     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
   }
 
-  @Disabled("Implement TODO 2 and 3")
   @Test
-  void registerValidBusinessUser() throws Exception {
+  void registerValidBusinessUser() {
     final var controller = new UserController(new UserService());
     final var request = new RegisterUserRequest();
     request.email = "foo@bar.it";
@@ -36,9 +35,8 @@ class UserControllerNoSpringTest {
     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
   }
 
-  @Disabled("Implement TODO 1 and 3")
   @Test
-  void registerUserEmptyEmail() throws Exception {
+  void registerUserEmptyEmail() {
     final var controller = new UserController(new UserService());
     final var request = new RegisterUserRequest();
     request.email = "";

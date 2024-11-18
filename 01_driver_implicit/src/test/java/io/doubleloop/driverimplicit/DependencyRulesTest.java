@@ -6,7 +6,7 @@ import com.tngtech.archunit.lang.syntax.ArchRuleDefinition;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-@Disabled("Run after moving classes into various packages")
+@Disabled
 class DependencyRulesTest {
 
   private final JavaClasses classes = new ClassFileImporter().importPackages(DependencyRulesTest.class.getPackageName());
