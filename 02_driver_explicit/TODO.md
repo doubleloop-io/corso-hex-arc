@@ -6,7 +6,7 @@
 - [ ] Rinomina la classe [UserService](src/main/java/io/doubleloop/driverexplicit/UserService.java) in
   `DefaultUserService`.
 - [ ] Estrai l'interfaccia `UserService` partendo
-  dalla classe [UserService](src/main/java/io/doubleloop/driverexplicit/UserService.java) in `DefaultUserService`.
+  dalla classe [DefaultUserService](src/main/java/io/doubleloop/driverexplicit/DefaultUserService.java).
 - [ ] Assicurati che il field [userService](src/main/java/io/doubleloop/driverexplicit/UserController.java#L17) sia
   di tipo `UserService` (interface).
 - [ ] Aggiungi un field `userService`
