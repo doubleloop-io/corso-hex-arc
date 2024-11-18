@@ -26,11 +26,13 @@ public class DefaultPostService implements PostService {
     if (found.isEmpty()) {
       throw new IllegalArgumentException("User not found");
     }
+
     final var user = found.get();
     if (user.isBlocked()) {
       throw new IllegalArgumentException("User is blocked");
     }
 
-    rabbitTemplate.convertAndSend(exchangeName, "posts.%s.new".formatted(command.getUserId()), jsonb.toJson(command));
+    final var message = jsonb.toJson(command);
+    rabbitTemplate.convertAndSend(exchangeName, "posts.%s.new".formatted(command.getUserId()), message);
   }
 }
