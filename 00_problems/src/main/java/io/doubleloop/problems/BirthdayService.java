@@ -6,6 +6,7 @@ import jakarta.mail.Session;
 import jakarta.mail.Transport;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -13,10 +14,10 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Properties;
 
-
+@Component
 public class BirthdayService {
-  public void sendGreetings(String fileName, LocalDate today, String smtpHost, int smtpPort) throws IOException, MessagingException {
-    BufferedReader in = new BufferedReader(new FileReader(fileName));
+  public void sendGreetings(String filePath, LocalDate today, String smtpHost, int smtpPort) throws IOException, MessagingException {
+    BufferedReader in = new BufferedReader(new FileReader(filePath));
     String str = "";
     str = in.readLine(); // skip header
     while ((str = in.readLine()) != null) {
