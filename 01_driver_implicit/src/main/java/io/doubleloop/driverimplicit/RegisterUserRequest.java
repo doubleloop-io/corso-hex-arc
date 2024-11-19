@@ -17,10 +17,10 @@ public class RegisterUserRequest {
   public String PIVA;
 
   RegisterBusinessUserCommand asBusinessUser() {
-    throw new NotImplementedException();
+    throw new RuntimeException("NotImplemented");
   }
 
   RegisterUserCommand asUser() {
-    throw new NotImplementedException();
+    throw new RuntimeException("NotImplemented");
   }
 }
