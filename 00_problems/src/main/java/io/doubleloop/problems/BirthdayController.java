@@ -1,7 +1,6 @@
 package io.doubleloop.problems;
 
 import jakarta.mail.MessagingException;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,29 +15,15 @@ import java.time.LocalDate;
 public class BirthdayController {
 
   private final BirthdayService service;
-  private final String filePath;
-  private final String smtpHost;
-  private final int smtpPort;
 
-  public BirthdayController(BirthdayService service,
-                            @Value("${app.employee.file}") String filePath,
-                            @Value("${app.smtp.host}") String smtpHost,
-                            @Value("${app.smtp.port}") int smtpPort) {
+  public BirthdayController(BirthdayService service) {
     this.service = service;
-    this.filePath = filePath;
-    this.smtpHost = smtpHost;
-    this.smtpPort = smtpPort;
   }
 
   @PostMapping("/sendGreetings")
   public ResponseEntity<Void> send(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) throws MessagingException, IOException {
 
-    service.sendGreetings(
-        filePath,
-        getValueOrDefault(date),
-        smtpHost,
-        smtpPort
-    );
+    service.sendGreetings(getValueOrDefault(date));
 
     return ResponseEntity.ok().build();
   }
