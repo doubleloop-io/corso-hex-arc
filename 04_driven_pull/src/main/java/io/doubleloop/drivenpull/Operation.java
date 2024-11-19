@@ -24,6 +24,26 @@ public class Operation {
     this.date = date;
   }
 
+  public String getId() {
+    return id;
+  }
+
+  public String getUserId() {
+    return userId;
+  }
+
+  public String getCurrency() {
+    return currency;
+  }
+
+  public BigDecimal getAmount() {
+    return amount;
+  }
+
+  public LocalDate getDate() {
+    return date;
+  }
+
   public LocalCurrencyAmount toLocalCurrency(ExchangeRateTable exchangeRateTable) {
     final var rate = exchangeRateTable.rateFor(currency);
     return new LocalCurrencyAmount(
