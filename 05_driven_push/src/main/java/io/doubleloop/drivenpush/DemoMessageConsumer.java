@@ -15,12 +15,22 @@ public class DemoMessageConsumer {
 
   private final Jsonb jsonb;
 
+  private PostMessageCommand lastPostMessage;
+
   public DemoMessageConsumer(Jsonb jsonb) {
     this.jsonb = jsonb;
   }
 
   public void receiveMessage(String message) {
-    final var post = jsonb.fromJson(message, PostMessageCommand.class);
-    log.info("Received: {}", post);
+    lastPostMessage = jsonb.fromJson(message, PostMessageCommand.class);
+    log.info("Received: {}", lastPostMessage);
+  }
+
+  public PostMessageCommand getLastPostMessage() {
+    return lastPostMessage;
+  }
+
+  public void resetLastPostMessage() {
+    lastPostMessage = null;
   }
 }

@@ -10,9 +10,9 @@ public class SeedDatabase implements CommandLineRunner {
 
   private static final Logger log = LoggerFactory.getLogger(SeedDatabase.class);
 
-  private final SpringUserRepository repository;
+  private final SpringMongoUserRepository repository;
 
-  public SeedDatabase(SpringUserRepository repository) {
+  public SeedDatabase(SpringMongoUserRepository repository) {
     this.repository = repository;
   }
 

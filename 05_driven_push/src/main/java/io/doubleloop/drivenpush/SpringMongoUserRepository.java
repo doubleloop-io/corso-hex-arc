@@ -2,5 +2,5 @@ package io.doubleloop.drivenpush;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface SpringUserRepository extends MongoRepository<User, String>, UserRepository {
+public interface SpringMongoUserRepository extends MongoRepository<User, String>, UserRepository {
 }
