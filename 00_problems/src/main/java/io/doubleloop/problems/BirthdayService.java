@@ -9,9 +9,9 @@ import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Properties;
 
@@ -31,12 +31,14 @@ public class BirthdayService {
   }
 
   public void sendGreetings(LocalDate today) throws IOException, MessagingException {
-    BufferedReader in = new BufferedReader(new FileReader(filePath));
-    String str = "";
-    str = in.readLine(); // skip header
-    while ((str = in.readLine()) != null) {
-      String[] employeeData = str.split(", ");
-      Employee employee = new Employee(employeeData[1], employeeData[0], employeeData[2], employeeData[3]);
+
+    final var employees = Files.readAllLines(Paths.get(filePath))
+        .stream()
+        .skip(1) // skip header
+        .map(this::parseLine)
+        .toList();
+
+    for (var employee : employees) {
       if (employee.isBirthday(today)) {
         String recipient = employee.getEmail();
         String body = "Happy Birthday, dear %NAME%".replace("%NAME%", employee.getFirstName());
@@ -46,13 +48,18 @@ public class BirthdayService {
     }
   }
 
+  private Employee parseLine(String str) {
+    final var employeeData = str.split(", ");
+    return new Employee(employeeData[1], employeeData[0], employeeData[2], employeeData[3]);
+  }
+
   private void sendMessage(String sender, String subject, String body, String recipient) throws MessagingException {
-    Properties props = new Properties();
+    final var props = new Properties();
     props.put("mail.smtp.host", smtpHost);
     props.put("mail.smtp.port", String.valueOf(smtpPort));
-    Session session = Session.getInstance(props, null);
+    final var session = Session.getInstance(props, null);
 
-    Message msg = new MimeMessage(session);
+    final var msg = new MimeMessage(session);
     msg.setFrom(new InternetAddress(sender));
     msg.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
     msg.setSubject(subject);
