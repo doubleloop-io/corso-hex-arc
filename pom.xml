@@ -17,6 +17,7 @@
         <module>04_driven_pull</module>
         <module>05_driven_push</module>
         <module>06_bad_design</module>
+        <module>07_bank</module>
     </modules>
 
     <properties>
