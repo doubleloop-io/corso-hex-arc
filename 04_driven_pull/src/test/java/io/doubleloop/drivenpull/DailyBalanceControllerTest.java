@@ -8,7 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import static org.mockito.Mockito.when;
@@ -27,12 +26,12 @@ class DailyBalanceControllerTest {
 
   @Test
   void dailyUserBalance() throws Exception {
-    final var result = new BalanceResult("123", LocalDate.of(2024, 11, 15), BigDecimal.valueOf(100));
+    final var result = new BalanceResult("123", LocalDate.of(2024, 11, 15), 100.0);
     when(dailyBalanceService.balanceOn(Mockito.any())).thenReturn(result);
 
     mockMvc.perform(get("/api/balance/daily/123"))
         .andExpect(status().isOk())
-        .andExpect(content().string("{\"userId\":\"123\",\"date\":\"2024-11-15\",\"balance\":100}"))
+        .andExpect(content().string("{\"userId\":\"123\",\"date\":\"2024-11-15\",\"balance\":100.0}"))
     ;
   }
 }

@@ -1,21 +1,19 @@
 package io.doubleloop.drivenpull;
 
-import java.math.BigDecimal;
-
 public class LocalCurrencyAmount {
 
-  public static final LocalCurrencyAmount ZERO = new LocalCurrencyAmount(BigDecimal.ZERO);
-  private final BigDecimal value;
+  public static final LocalCurrencyAmount ZERO = new LocalCurrencyAmount(0.0);
+  private final Double value;
 
-  public LocalCurrencyAmount(BigDecimal value) {
+  public LocalCurrencyAmount(Double value) {
     this.value = value;
   }
 
   public LocalCurrencyAmount add(LocalCurrencyAmount other) {
-    return new LocalCurrencyAmount(value.add(other.value));
+    return new LocalCurrencyAmount(value + other.value);
   }
 
-  public BigDecimal getValue() {
+  public Double getValue() {
     return value;
   }
 }

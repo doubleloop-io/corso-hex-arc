@@ -2,7 +2,6 @@ package io.doubleloop.drivenpull;
 
 import org.springframework.data.annotation.Id;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Operation {
@@ -11,13 +10,13 @@ public class Operation {
 
   private String userId;
   private String currency;
-  private BigDecimal amount;
+  private Double amount;
   private LocalDate date;
 
   public Operation() {
   }
 
-  public Operation(String userId, String currency, BigDecimal amount, LocalDate date) {
+  public Operation(String userId, String currency, Double amount, LocalDate date) {
     this.userId = userId;
     this.currency = currency;
     this.amount = amount;
@@ -36,7 +35,7 @@ public class Operation {
     return currency;
   }
 
-  public BigDecimal getAmount() {
+  public Double getAmount() {
     return amount;
   }
 
@@ -46,8 +45,6 @@ public class Operation {
 
   public LocalCurrencyAmount toLocalCurrency(ExchangeRateTable exchangeRateTable) {
     final var rate = exchangeRateTable.rateFor(currency);
-    return new LocalCurrencyAmount(
-        amount.multiply(BigDecimal.valueOf(rate))
-    );
+    return new LocalCurrencyAmount(amount * rate);
   }
 }

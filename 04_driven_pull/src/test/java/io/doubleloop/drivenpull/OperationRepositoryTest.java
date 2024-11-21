@@ -9,7 +9,6 @@ import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -32,22 +31,22 @@ class OperationRepositoryTest {
 
   @Test
   void findByUserIdAndDateMatchOne() {
-    repository.save(new Operation("user1", "EUR", BigDecimal.TEN, LocalDate.of(2024, 11, 10)));
-    repository.save(new Operation("user1", "EUR", BigDecimal.TEN.negate(), LocalDate.of(2024, 11, 11)));
-    repository.save(new Operation("user2", "EUR", BigDecimal.TEN, LocalDate.of(2024, 11, 10)));
+    repository.save(new Operation("user1", "EUR", 10.0, LocalDate.of(2024, 11, 10)));
+    repository.save(new Operation("user1", "EUR", -10.0, LocalDate.of(2024, 11, 11)));
+    repository.save(new Operation("user2", "EUR", 10.0, LocalDate.of(2024, 11, 10)));
 
     final var result = repository.findByUserIdAndDate("user1", LocalDate.of(2024, 11, 10));
 
     assertThat(result.size()).isEqualTo(1);
     assertThat(result.get(0).getCurrency()).isEqualTo("EUR");
-    assertThat(result.get(0).getAmount()).isEqualTo(BigDecimal.TEN);
+    assertThat(result.get(0).getAmount()).isEqualTo(10.0);
   }
 
   @Test
   void findByUserIdAndDateMatchMany() {
-    repository.save(new Operation("user1", "EUR", BigDecimal.TEN, LocalDate.of(2024, 11, 10)));
-    repository.save(new Operation("user1", "EUR", BigDecimal.TEN.negate(), LocalDate.of(2024, 11, 10)));
-    repository.save(new Operation("user2", "EUR", BigDecimal.TEN, LocalDate.of(2024, 11, 10)));
+    repository.save(new Operation("user1", "EUR", 10.0, LocalDate.of(2024, 11, 10)));
+    repository.save(new Operation("user1", "EUR", -10.0, LocalDate.of(2024, 11, 10)));
+    repository.save(new Operation("user2", "EUR", 10.0, LocalDate.of(2024, 11, 10)));
 
     final var result = repository.findByUserIdAndDate("user1", LocalDate.of(2024, 11, 10));
 
@@ -56,8 +55,8 @@ class OperationRepositoryTest {
 
   @Test
   void findByUserIdAndDateNoMatch() {
-    repository.save(new Operation("user1", "EUR", BigDecimal.TEN, LocalDate.of(2024, 11, 10)));
-    repository.save(new Operation("user2", "EUR", BigDecimal.TEN, LocalDate.of(2024, 11, 10)));
+    repository.save(new Operation("user1", "EUR", 10.0, LocalDate.of(2024, 11, 10)));
+    repository.save(new Operation("user2", "EUR", 10.0, LocalDate.of(2024, 11, 10)));
 
     final var result = repository.findByUserIdAndDate("user3", LocalDate.of(2024, 11, 10));
 
