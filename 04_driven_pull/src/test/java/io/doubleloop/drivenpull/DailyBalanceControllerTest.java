@@ -31,7 +31,7 @@ class DailyBalanceControllerTest {
 
     mockMvc.perform(get("/api/balance/daily/123"))
         .andExpect(status().isOk())
-        .andExpect(content().string("{\"userId\":\"123\",\"date\":\"2024-11-15\",\"balance\":100.0}"))
-    ;
+        .andExpect(content().string("""
+               {"userId":"123","date":"2024-11-15","balance":100.0}"""));
   }
 }
