@@ -5,10 +5,10 @@ import java.time.format.DateTimeFormatter;
 
 public class Employee {
 
-  private LocalDate birthDate;
-  private String lastName;
-  private String firstName;
-  private String email;
+  private final LocalDate birthDate;
+  private final String lastName;
+  private final String firstName;
+  private final String email;
 
   public Employee(String firstName, String lastName, String birthDate, String email) {
     this.firstName = firstName;

@@ -36,7 +36,10 @@ class BirthdayServiceTest {
 
   @Test
   void testSendMessage() throws Exception {
-    final var emailService = new BirthdayService(filePath, smtpHost, smtpPort);
+    final var repository = new EmployeeRepository(filePath);
+    final var notification = new GreetingsNotification(smtpHost, smtpPort);
+    final var emailService = new BirthdayService(repository, notification);
+
     emailService.sendGreetings(LocalDate.of(2024, 10, 8));
 
     final var receivedMessages = mailServer.getReceivedMessages();
