@@ -33,8 +33,9 @@ class DefaultPostServiceTest {
 
   @Autowired
   private SpringMongoUserRepository userRepository;
+
   @Autowired
-  private PostService postService;
+  private DefaultPostService postService;
 
   @BeforeAll
   static void setup() {

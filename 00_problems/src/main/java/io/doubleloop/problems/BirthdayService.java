@@ -2,11 +2,12 @@ package io.doubleloop.problems;
 
 import jakarta.mail.MessagingException;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.time.LocalDate;
 
-@Component
+@Service
 public class BirthdayService {
 
   private final EmployeeRepository employeeRepository;

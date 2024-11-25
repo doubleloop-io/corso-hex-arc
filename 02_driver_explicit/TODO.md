@@ -11,7 +11,7 @@
 - [ ] Assicurati che il field [userService](src/main/java/io/doubleloop/driverexplicit/UserController.java#L16) sia
   di tipo `UserService` (interface).
 - [ ] Aggiungi un field `userService`
-  in [UserControllerTest](src/test/java/io/doubleloop/driverexplicit/UserControllerTest.java) e annotalo con `@Mock`.
+  in [UserControllerTest](src/test/java/io/doubleloop/driverexplicit/UserControllerTest.java) e annotalo con `@MockBean`.
 - [ ] Aggiungi una `when(userService...).thenReturns(...)` expression in ogni test
   di [UserControllerTest](src/test/java/io/doubleloop/driverexplicit/UserControllerTest.java) per pilotare lo stub.
 - [ ] Verifica che tutti i test
