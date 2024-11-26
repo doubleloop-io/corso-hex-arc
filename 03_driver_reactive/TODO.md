@@ -3,7 +3,7 @@
 - [ ] Come cambiano le interazioni se non hai un ApiController come Driver Adapter ma un queue Consumer?
 - [ ] Leggi il codice
   di [WorkRecordDemoProducer](src/main/java/io/doubleloop/driverreactive/WorkRecordDemoProducer.java) e relative
-  dipendenze, in particolare `WorkRecordRequest` ed i tipi di richiesta che il producer puo' inviare
+  dipendenze, in particolare `WorkRecordRequest` e i tipi di richiesta che il producer puo' inviare
 - [ ] Leggi il codice di [WorkRecordConsumer](src/main/java/io/doubleloop/driverreactive/WorkRecordConsumer.java) e
   relative dipendenze, in particolare osserva il dispatch al service basato sul tipo di action richiesta.
 - [ ] Sposta i file nei rispettivi package/folder in base alla loro responsabilità.

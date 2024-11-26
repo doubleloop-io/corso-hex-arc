@@ -10,10 +10,10 @@
 - [ ] Estrai un'interfaccia `PostNotifier`.
 - [ ] Utilizza `PostNotifier` in [DefaultPostService](src/main/java/io/doubleloop/drivenpush/DefaultPostService.java) al
   posto di `SpringRabbitMqPostNotifier`.
-- [ ] Elimina l'uso di `@Testcontainers`, del container MongoDB, - del vero repository dalla e l'uso di
-  `@SpringBootTest` dalla
-  suite [DefaultDailyBalanceServiceTest](src/test/java/io/doubleloop/drivenpush/DefaultPostServiceTest.java) attraverso
-  l'uso di `Mockito.mock(class)`.
+- [ ] Elimina l'uso di `@Testcontainers`, del container MongoDB, RabbitMQ, dell'adapter Repository, del Consumer e l'uso
+  di `@SpringBootTest` dalla
+  suite [DefaultPostServiceTest](src/test/java/io/doubleloop/drivenpush/DefaultPostServiceTest.java) attraverso l'uso di
+  `Mockito.mock(class)`.
 - [ ] Sposta i file nei rispettivi package/folder in base alla loro responsabilità.
 - [ ] Rimuovi l'annotazione `@Disabled`
   da [DependencyRulesTest](src/test/java/io/doubleloop/drivenpush/DependencyRulesTest.java#L9) e
