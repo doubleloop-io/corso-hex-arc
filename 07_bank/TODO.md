@@ -1,7 +1,7 @@
 ## TODO:
 
-Implementa alcuni dei seguenti scenari con particolare attenzione ai building block che compongono l'Hexagonal
-Architecture.
+Obiettivo: implementa alcuni dei seguenti scenari con particolare attenzione ai building block che compongono
+l'Hexagonal Architecture.
 
 Apertura conto:
 

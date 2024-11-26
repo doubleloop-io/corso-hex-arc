@@ -1,5 +1,7 @@
 ## TODO:
 
+Obiettivo: testare [DefaultPostService](src/main/java/io/doubleloop/drivenpush/DefaultPostService.java) senza l'utilizzo dell'infrastruttura (containers) introducendo le Driven Port di tipo Push.
+
 - [ ] Leggi il codice di [DefaultPostService](src/main/java/io/doubleloop/drivenpush/DefaultPostService.java).
 - [ ] Aggiungi una nuova classe infrastrutturale `SpringRabbitMqPostNotifier` con il codice relativo alla pubblicazione
   del `PostMessageCommand` preso
@@ -18,5 +20,3 @@
 - [ ] Rimuovi l'annotazione `@Disabled`
   da [DependencyRulesTest](src/test/java/io/doubleloop/drivenpush/DependencyRulesTest.java#L9) e
   verifica che i test siano verdi.
-
-

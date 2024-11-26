@@ -1,5 +1,7 @@
 ## TODO:
 
+Obiettivo: finire di implementare il Driver Adapter [UserController](src/main/java/io/doubleloop/driverimplicit/UserController.java). 
+
 - [ ] Leggi il codice di [UserController](src/main/java/io/doubleloop/driverimplicit/UserController.java)
   e [UserService](src/main/java/io/doubleloop/driverimplicit/UserService.java).
 - [ ] Implementa i metodi di mapping da DTO del WebController a DTO del

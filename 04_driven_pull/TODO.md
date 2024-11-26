@@ -1,5 +1,7 @@
 ## TODO:
 
+Obiettivo: testare [DefaultDailyBalanceService](src/main/java/io/doubleloop/drivenpull/DefaultDailyBalanceService.java) senza l'utilizzo dell'infrastruttura (containers) introducendo le Driven Port di tipo Pull.
+
 - [ ] Leggi il codice
   di [DefaultDailyBalanceService](src/main/java/io/doubleloop/drivenpull/DefaultDailyBalanceService.java) e le relative
   dipendenze [OperationRepository](src/main/java/io/doubleloop/drivenpull/OperationRepository.java)

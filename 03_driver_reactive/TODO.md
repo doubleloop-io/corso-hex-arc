@@ -1,5 +1,7 @@
 ## TODO:
 
+Obiettivo: vedere come cambiano le implementazioni quando abbiamo un Driver Adapter Consumer di messaggi.
+
 - [ ] Come cambiano le interazioni se non hai un ApiController come Driver Adapter ma un queue Consumer?
 - [ ] Leggi il codice
   di [WorkRecordDemoProducer](src/main/java/io/doubleloop/driverreactive/WorkRecordDemoProducer.java) e relative

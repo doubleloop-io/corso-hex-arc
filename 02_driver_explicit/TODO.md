@@ -1,5 +1,7 @@
 ## TODO:
 
+Obiettivo: testare il Driver Adapter [UserController](src/main/java/io/doubleloop/driverimplicit/UserController.java) senza dipendere dall'Application.
+
 - [ ] Leggi i test del
   controller [UserControllerTest](src/test/java/io/doubleloop/driverexplicit/UserControllerTest.java), come vedi sono
   implementati come Integration Test e utilizzano un container MongoDB per funzionare, a causa dell'accoppiameno
