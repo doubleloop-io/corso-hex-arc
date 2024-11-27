@@ -1,4 +1,4 @@
-package io.doubleloop.driverexplicit;
+package io.doubleloop.driverexplicit.domain;
 
 import org.springframework.stereotype.Service;
 

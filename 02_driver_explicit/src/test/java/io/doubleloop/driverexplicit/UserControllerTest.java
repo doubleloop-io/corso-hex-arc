@@ -1,46 +1,39 @@
 package io.doubleloop.driverexplicit;
 
-import org.junit.jupiter.api.BeforeEach;
+import io.doubleloop.driverexplicit.domain.GetUserResult;
+import io.doubleloop.driverexplicit.domain.RegisterUserError;
+import io.doubleloop.driverexplicit.domain.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.testcontainers.containers.MongoDBContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@Testcontainers
 class UserControllerTest {
 
   @Autowired
   private MockMvc mockMvc;
 
-  @Container
-  @ServiceConnection
-  private static MongoDBContainer container = new MongoDBContainer("mongo:latest");
-
-  @Autowired
-  private UserRepository userRepository;
-
-  @BeforeEach
-  void setUp() {
-    userRepository.deleteAll();
-  }
+  @MockBean
+  private UserService userService;
 
   @Test
   void registerValidUser() throws Exception {
+    when(userService.register(any())).thenReturn(GetUserResult.RegisterUserResult.success());
+
     final var json = """
-        { 
+        {
           "email": "foo@bar.it",
           "password": "123456"
         }
@@ -56,7 +49,7 @@ class UserControllerTest {
   @Test
   void registerUserEmptyEmail() throws Exception {
     final var json = """
-        { 
+        {
           "email": "",
           "password": "123456"
         }
@@ -71,7 +64,7 @@ class UserControllerTest {
   @Test
   void registerUserEmptyPassword() throws Exception {
     final var json = """
-        { 
+        {
           "email": "foo@bar.it",
           "password": ""
         }
@@ -85,10 +78,10 @@ class UserControllerTest {
 
   @Test
   void registerDuplicatedEmail() throws Exception {
-    userRepository.save(new User("duplicated@bar.it", "123456"));
+    when(userService.register(any())).thenReturn(GetUserResult.RegisterUserResult.error(RegisterUserError.DUPLICATED_EMAIL));
 
     final var json = """
-        { 
+        {
           "email": "duplicated@bar.it",
           "password": "123456"
         }

@@ -1,5 +1,8 @@
-package io.doubleloop.driverexplicit;
+package io.doubleloop.driverexplicit.adapter;
 
+import io.doubleloop.driverexplicit.domain.GetUserQuery;
+import io.doubleloop.driverexplicit.domain.GetUserResult;
+import io.doubleloop.driverexplicit.domain.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

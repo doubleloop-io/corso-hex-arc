@@ -1,5 +1,6 @@
 package io.doubleloop.driverexplicit;
 
+import io.doubleloop.driverexplicit.domain.GetUserResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,8 @@ class UserRepositoryTest {
 
   @Test
   void findByEmailMatch() {
-    userRepository.save(new User("foo@bar.it", "test"));
-    userRepository.save(new User("test@test.it", "test"));
+    userRepository.save(new GetUserResult.User("foo@bar.it", "test"));
+    userRepository.save(new GetUserResult.User("test@test.it", "test"));
 
     final var result = userRepository.findByEmail("foo@bar.it");
 
@@ -40,7 +41,7 @@ class UserRepositoryTest {
 
   @Test
   void findByEmailNotMatch() {
-    userRepository.save(new User("test@test.it", "test"));
+    userRepository.save(new GetUserResult.User("test@test.it", "test"));
 
     final var result = userRepository.findByEmail("foo@bar.it");
 
