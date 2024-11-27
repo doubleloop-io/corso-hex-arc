@@ -1,4 +1,4 @@
-package io.doubleloop.drivenpull;
+package io.doubleloop.drivenpull.domain;
 
 import java.time.LocalDate;
 

@@ -1,5 +1,7 @@
 package io.doubleloop.drivenpull;
 
+import io.doubleloop.drivenpull.adapter.SpringMongoOperationRepository;
+import io.doubleloop.drivenpull.domain.Operation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,7 @@ class OperationRepositoryTest {
   private static MongoDBContainer container = new MongoDBContainer("mongo:latest");
 
   @Autowired
-  private OperationRepository repository;
+  private SpringMongoOperationRepository repository;
 
   @BeforeEach
   void setUp() {

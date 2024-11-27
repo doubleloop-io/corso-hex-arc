@@ -1,12 +1,15 @@
-package io.doubleloop.drivenpull;
+package io.doubleloop.drivenpull.adapter;
 
+import io.doubleloop.drivenpull.domain.ExchangeProvider;
+import io.doubleloop.drivenpull.domain.ExchangeRateTable;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.Map;
 
 @Component
-public class ExchangeProvider {
+public class HttpExchangeProvider implements ExchangeProvider {
+  @Override
   public ExchangeRateTable definedOn(LocalDate day) {
     return new ExchangeRateTable(httpGetExchangeRatesFromExternalSystem(day));
   }

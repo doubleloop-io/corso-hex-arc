@@ -1,5 +1,7 @@
 package io.doubleloop.drivenpull;
 
+import io.doubleloop.drivenpull.domain.BalanceResult;
+import io.doubleloop.drivenpull.domain.DailyBalanceService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;

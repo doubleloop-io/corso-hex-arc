@@ -1,40 +1,36 @@
 package io.doubleloop.drivenpull;
 
-import org.junit.jupiter.api.BeforeEach;
+import io.doubleloop.drivenpull.domain.BalanceOnQuery;
+import io.doubleloop.drivenpull.domain.DefaultDailyBalanceService;
+import io.doubleloop.drivenpull.domain.ExchangeProvider;
+import io.doubleloop.drivenpull.domain.ExchangeRateTable;
+import io.doubleloop.drivenpull.domain.Operation;
+import io.doubleloop.drivenpull.domain.OperationRepository;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
-import org.testcontainers.containers.MongoDBContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
+import org.mockito.Mockito;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
-@SpringBootTest
-@Testcontainers
 class DefaultDailyBalanceServiceTest {
-  @Container
-  @ServiceConnection
-  private static MongoDBContainer container = new MongoDBContainer("mongo:latest");
 
-  @Autowired
-  private OperationRepository operationRepository;
-  @Autowired
-  private ExchangeProvider exchangeProvider;
+  private final OperationRepository operationRepository = Mockito.mock(OperationRepository.class);
+  private final ExchangeProvider exchangeProvider = Mockito.mock(ExchangeProvider.class);
 
   private static final LocalDate today = LocalDate.now();
   private static final LocalDate yesterday = LocalDate.now().minusDays(1);
 
-  @BeforeEach
-  void setUp() {
-    operationRepository.deleteAll();
-  }
-
   @Test
   void noOperations() {
+    when(operationRepository.findByUserIdAndDate(any(), any()))
+        .thenReturn(List.of());
+    when(exchangeProvider.definedOn(any()))
+        .thenReturn(new ExchangeRateTable(ExchangeRateTable.DEFAULT_EXCHANGE_RATES));
+
     final var service = new DefaultDailyBalanceService(operationRepository, exchangeProvider);
 
     final var result = service.balanceOn(new BalanceOnQuery("user1", today));
@@ -44,8 +40,11 @@ class DefaultDailyBalanceServiceTest {
 
   @Test
   void todayOperations() {
-    operationRepository.save(new Operation("user1", "EUR", 100.0, today));
-    operationRepository.save(new Operation("user1", "EUR", 100.0, today));
+    when(operationRepository.findByUserIdAndDate(any(), any()))
+        .thenReturn(List.of(new Operation("user1", "EUR", 100.0, today),
+            new Operation("user1", "EUR", 100.0, today)));
+    when(exchangeProvider.definedOn(any()))
+        .thenReturn(new ExchangeRateTable(ExchangeRateTable.DEFAULT_EXCHANGE_RATES));
 
     final var service = new DefaultDailyBalanceService(operationRepository, exchangeProvider);
 
@@ -56,8 +55,10 @@ class DefaultDailyBalanceServiceTest {
 
   @Test
   void yesterdayOperations() {
-    operationRepository.save(new Operation("user1", "EUR", 10.0, yesterday));
-    operationRepository.save(new Operation("user1", "EUR", 100.0, today));
+    when(operationRepository.findByUserIdAndDate(any(), any()))
+        .thenReturn(List.of(new Operation("user1", "EUR", 10.0, yesterday)));
+    when(exchangeProvider.definedOn(any()))
+        .thenReturn(new ExchangeRateTable(ExchangeRateTable.DEFAULT_EXCHANGE_RATES));
 
     final var service = new DefaultDailyBalanceService(operationRepository, exchangeProvider);
 
@@ -68,8 +69,10 @@ class DefaultDailyBalanceServiceTest {
 
   @Test
   void onlyOperationsOfSelectedUser() {
-    operationRepository.save(new Operation("user1", "EUR", 100.0, today));
-    operationRepository.save(new Operation("user2", "EUR", 10.0, today));
+    when(operationRepository.findByUserIdAndDate(any(), any()))
+        .thenReturn(List.of(new Operation("user1", "EUR", 100.0, today)));
+    when(exchangeProvider.definedOn(any()))
+        .thenReturn(new ExchangeRateTable(ExchangeRateTable.DEFAULT_EXCHANGE_RATES));
 
     final var service = new DefaultDailyBalanceService(operationRepository, exchangeProvider);
 
@@ -80,9 +83,14 @@ class DefaultDailyBalanceServiceTest {
 
   @Test
   void differentCurrencies() {
-    operationRepository.save(new Operation("user1", "EUR", 10.0, today));
-    operationRepository.save(new Operation("user1", "USD", 10.0, today));
-    operationRepository.save(new Operation("user1", "GBP", 25.0, today));
+    when(operationRepository.findByUserIdAndDate(any(), any()))
+        .thenReturn(List.of(
+            new Operation("user1", "EUR", 10.0, today),
+            new Operation("user1", "USD", 10.0, today),
+            new Operation("user1", "GBP", 25.0, today)
+        ));
+    when(exchangeProvider.definedOn(any()))
+        .thenReturn(new ExchangeRateTable(ExchangeRateTable.DEFAULT_EXCHANGE_RATES));
 
     final var service = new DefaultDailyBalanceService(operationRepository, exchangeProvider);
 
