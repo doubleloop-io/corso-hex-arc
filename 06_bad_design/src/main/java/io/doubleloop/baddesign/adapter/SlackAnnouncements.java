@@ -1,4 +1,6 @@
-package io.doubleloop.baddesign.domain;
+package io.doubleloop.baddesign.adapter;
+
+import io.doubleloop.baddesign.domain.ScheduledEvent;
 
 public class SlackAnnouncements {
 
@@ -14,7 +16,7 @@ public class SlackAnnouncements {
         .formatted(actual, required));
   }
 
-  static SlackMessage nextEvent(ScheduledEvent scheduledEvent, int attendeesCount) {
+  public static SlackMessage nextEvent(ScheduledEvent scheduledEvent, int attendeesCount) {
     return SlackMessage.of(
         "Next week event is %s by @%s with %s attendees."
             .formatted(scheduledEvent.getTitle(), scheduledEvent.getSpeaker(), attendeesCount),

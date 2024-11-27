@@ -1,5 +1,6 @@
-package io.doubleloop.baddesign.domain;
+package io.doubleloop.baddesign.adapter;
 
+import io.doubleloop.baddesign.domain.WeeklyEventService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,7 @@ public class WeeklyEventTask {
   }
 
   @Scheduled(cron = "0 0 9 * * MON", zone = "UTC")
-  public void executeTask() throws Exception {
+  public void executeTask() {
     service.announceNextMeetupEvent(LocalDate.now(), attendeesThreshold);
   }
 }

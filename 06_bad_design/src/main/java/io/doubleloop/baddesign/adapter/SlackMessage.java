@@ -1,4 +1,4 @@
-package io.doubleloop.baddesign.domain;
+package io.doubleloop.baddesign.adapter;
 
 // NOTE: read here for more info https://api.slack.com/methods/chat.postMessage#text_usage
 public class SlackMessage {
