@@ -1,4 +1,4 @@
-package io.doubleloop.problems;
+package io.doubleloop.problems.domain;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

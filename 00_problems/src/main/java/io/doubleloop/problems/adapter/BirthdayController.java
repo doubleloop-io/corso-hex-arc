@@ -1,5 +1,6 @@
-package io.doubleloop.problems;
+package io.doubleloop.problems.adapter;
 
+import io.doubleloop.problems.domain.BirthdayService;
 import jakarta.mail.MessagingException;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;

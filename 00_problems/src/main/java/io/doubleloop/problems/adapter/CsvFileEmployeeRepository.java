@@ -1,5 +1,7 @@
-package io.doubleloop.problems;
+package io.doubleloop.problems.adapter;
 
+import io.doubleloop.problems.domain.Employee;
+import io.doubleloop.problems.domain.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -9,18 +11,19 @@ import java.nio.file.Paths;
 import java.util.List;
 
 @Component
-public class EmployeeRepository {
+public class CsvFileEmployeeRepository implements EmployeeRepository {
   private final String filePath;
 
-  public EmployeeRepository(@Value("${app.employee.file}") String filePath) {
+  public CsvFileEmployeeRepository(@Value("${app.employee.file}") String filePath) {
     this.filePath = filePath;
   }
 
+  @Override
   public List<Employee> readEmployees() throws IOException {
     return Files.readAllLines(Paths.get(filePath))
         .stream()
         .skip(1) // skip header
-        .map(EmployeeRepository::parseLine)
+        .map(CsvFileEmployeeRepository::parseLine)
         .toList();
   }
 

@@ -1,5 +1,7 @@
-package io.doubleloop.problems;
+package io.doubleloop.problems.adapter;
 
+import io.doubleloop.problems.domain.Greetings;
+import io.doubleloop.problems.domain.GreetingsNotification;
 import jakarta.mail.Message;
 import jakarta.mail.MessagingException;
 import jakarta.mail.Session;
@@ -12,18 +14,19 @@ import org.springframework.stereotype.Component;
 import java.util.Properties;
 
 @Component
-public class GreetingsNotification {
+public class SmtpGreetingsNotification implements GreetingsNotification {
   private final String smtpHost;
   private final int smtpPort;
 
-  public GreetingsNotification(
+  public SmtpGreetingsNotification(
       @Value("${app.smtp.host}") String smtpHost,
       @Value("${app.smtp.port}") int smtpPort) {
     this.smtpHost = smtpHost;
     this.smtpPort = smtpPort;
   }
 
-  void sendMessage(Greetings greetings) throws MessagingException {
+  @Override
+  public void sendMessage(Greetings greetings) throws MessagingException {
     final var session = getSession();
     final var msg = createMessage(greetings, session);
     Transport.send(msg);
