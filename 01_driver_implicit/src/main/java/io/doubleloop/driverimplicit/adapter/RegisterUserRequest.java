@@ -1,5 +1,7 @@
-package io.doubleloop.driverimplicit;
+package io.doubleloop.driverimplicit.adapter;
 
+import io.doubleloop.driverimplicit.domain.RegisterBusinessUserCommand;
+import io.doubleloop.driverimplicit.domain.RegisterUserCommand;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 
@@ -17,10 +19,10 @@ public class RegisterUserRequest {
   public String PIVA;
 
   RegisterBusinessUserCommand asBusinessUser() {
-    throw new RuntimeException("NotImplemented");
+    return new RegisterBusinessUserCommand(email, password, PIVA);
   }
 
   RegisterUserCommand asUser() {
-    throw new RuntimeException("NotImplemented");
+    return new RegisterUserCommand(email, password);
   }
 }

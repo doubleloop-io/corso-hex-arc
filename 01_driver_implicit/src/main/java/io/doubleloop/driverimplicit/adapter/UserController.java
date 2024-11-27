@@ -1,5 +1,6 @@
-package io.doubleloop.driverimplicit;
+package io.doubleloop.driverimplicit.adapter;
 
+import io.doubleloop.driverimplicit.domain.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,11 @@ public class UserController {
         ? userService.register(request.asUser())
         : userService.register(request.asBusinessUser());
 
+    if (result.isSuccess())
+      return ResponseEntity.ok(request.email);
+
+    if (result.isError())
+      return ResponseEntity.unprocessableEntity().body(result.getError().toString());
 
     return ResponseEntity.internalServerError().build();
   }

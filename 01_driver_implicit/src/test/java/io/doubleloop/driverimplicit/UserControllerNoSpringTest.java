@@ -1,12 +1,14 @@
 package io.doubleloop.driverimplicit;
 
+import io.doubleloop.driverimplicit.adapter.RegisterUserRequest;
+import io.doubleloop.driverimplicit.adapter.UserController;
+import io.doubleloop.driverimplicit.domain.UserService;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Disabled
 class UserControllerNoSpringTest {
 
   @Test
@@ -35,6 +37,7 @@ class UserControllerNoSpringTest {
     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
   }
 
+  @Disabled("This test can not be green.")
   @Test
   void registerUserEmptyEmail() {
     final var controller = new UserController(new UserService());

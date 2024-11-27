@@ -1,4 +1,4 @@
-package io.doubleloop.driverimplicit;
+package io.doubleloop.driverimplicit.domain;
 
 public class RegisterUserCommand {
 

@@ -1,4 +1,4 @@
-package io.doubleloop.driverimplicit;
+package io.doubleloop.driverimplicit.adapter;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
