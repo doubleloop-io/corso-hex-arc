@@ -1,5 +1,7 @@
 package io.doubleloop.driverreactive;
 
+import io.doubleloop.driverreactive.adapter.WorkRecordConsumer;
+import io.doubleloop.driverreactive.domain.WorkRecordService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package io.doubleloop.driverreactive;
+package io.doubleloop.driverreactive.domain;
 
 import java.time.LocalDate;
 

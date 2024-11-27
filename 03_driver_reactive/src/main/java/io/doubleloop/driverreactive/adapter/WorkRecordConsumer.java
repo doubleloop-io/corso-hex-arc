@@ -1,5 +1,6 @@
-package io.doubleloop.driverreactive;
+package io.doubleloop.driverreactive.adapter;
 
+import io.doubleloop.driverreactive.domain.WorkRecordService;
 import org.springframework.stereotype.Component;
 
 import javax.json.bind.Jsonb;
