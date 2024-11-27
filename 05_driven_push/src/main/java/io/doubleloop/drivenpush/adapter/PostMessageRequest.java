@@ -1,5 +1,6 @@
-package io.doubleloop.drivenpush;
+package io.doubleloop.drivenpush.adapter;
 
+import io.doubleloop.drivenpush.domain.PostMessageCommand;
 import jakarta.validation.constraints.NotEmpty;
 
 public class PostMessageRequest {

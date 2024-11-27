@@ -1,59 +1,37 @@
 package io.doubleloop.drivenpush;
 
-import org.junit.jupiter.api.BeforeAll;
+import io.doubleloop.drivenpush.domain.DefaultPostService;
+import io.doubleloop.drivenpush.domain.PostMessageCommand;
+import io.doubleloop.drivenpush.domain.PostNotifier;
+import io.doubleloop.drivenpush.domain.User;
+import io.doubleloop.drivenpush.domain.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
-import org.testcontainers.containers.MongoDBContainer;
-import org.testcontainers.containers.RabbitMQContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
+import org.mockito.Mockito;
 
-import static java.lang.Thread.sleep;
-import static org.assertj.core.api.Assertions.assertThat;
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-@SpringBootTest
-@Testcontainers
 class DefaultPostServiceTest {
 
-  @Container
-  @ServiceConnection
-  private static MongoDBContainer container = new MongoDBContainer("mongo:latest");
+  private final UserRepository userRepository = Mockito.mock(UserRepository.class);
+  private final PostNotifier postNotifier = Mockito.mock(PostNotifier.class);
 
-  @Container
-  static final RabbitMQContainer rabbitMQContainer = new RabbitMQContainer("rabbitmq:latest")
-      .withUser("guest", "guest")
-      .withExposedPorts(5672);
-
-  @Autowired
-  private DemoMessageConsumer consumer;
-
-  @Autowired
-  private SpringMongoUserRepository userRepository;
-
-  @Autowired
   private DefaultPostService postService;
-
-  @BeforeAll
-  static void setup() {
-    System.setProperty("spring.rabbitmq.host", rabbitMQContainer.getHost());
-    System.setProperty("spring.rabbitmq.port", rabbitMQContainer.getAmqpPort().toString());
-    System.setProperty("spring.rabbitmq.username", "guest");
-    System.setProperty("spring.rabbitmq.password", "guest");
-  }
 
   @BeforeEach
   void setUp() {
-    userRepository.deleteAll();
-    consumer.resetLastPostMessage();
+    postService = new DefaultPostService(userRepository, postNotifier);
   }
 
   @Test
-  void userPostMessage() throws Exception {
-    final var user = userRepository.save(new User("foo@bar.it", false));
+  void userPostMessage() {
+    final var user = new User("foo@bar.it", false);
+    when(userRepository.findById(user.getId())).thenReturn(Optional.of(user));
 
     final var command = new PostMessageCommand();
     command.setUserId(user.getId());
@@ -61,14 +39,13 @@ class DefaultPostServiceTest {
 
     postService.postMessage(command);
 
-    sleep(100);
-    final var post = consumer.getLastPostMessage();
-    assertThat(post).isEqualTo(command);
+    verify(postNotifier).postMessage(command);
   }
 
   @Test
-  void blockedUserPostMessage() throws Exception {
-    final var user = userRepository.save(new User("foo@bar.it", true));
+  void blockedUserPostMessage() {
+    final var user = new User("foo@bar.it", true);
+    when(userRepository.findById(user.getId())).thenReturn(Optional.of(user));
 
     final var command = new PostMessageCommand();
     command.setUserId(user.getId());
@@ -79,8 +56,8 @@ class DefaultPostServiceTest {
   }
 
   @Test
-  void unknownUserPostMessage() throws Exception {
-    final var user = userRepository.save(new User("foo@bar.it", true));
+  void unknownUserPostMessage() {
+    when(userRepository.findById(any())).thenReturn(Optional.empty());
 
     final var command = new PostMessageCommand();
     command.setUserId("unknown");

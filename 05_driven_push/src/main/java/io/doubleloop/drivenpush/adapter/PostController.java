@@ -1,5 +1,6 @@
-package io.doubleloop.drivenpush;
+package io.doubleloop.drivenpush.adapter;
 
+import io.doubleloop.drivenpush.domain.PostService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

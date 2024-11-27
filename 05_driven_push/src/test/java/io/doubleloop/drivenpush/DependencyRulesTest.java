@@ -6,7 +6,6 @@ import com.tngtech.archunit.lang.syntax.ArchRuleDefinition;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-@Disabled
 class DependencyRulesTest {
 
   private final JavaClasses classes = new ClassFileImporter().importPackages(DependencyRulesTest.class.getPackageName());

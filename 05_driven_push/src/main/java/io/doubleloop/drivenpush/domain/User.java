@@ -1,4 +1,4 @@
-package io.doubleloop.drivenpush;
+package io.doubleloop.drivenpush.domain;
 
 import org.springframework.data.annotation.Id;
 

@@ -1,5 +1,6 @@
 package io.doubleloop.drivenpush;
 
+import io.doubleloop.drivenpush.domain.PostMessageCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;

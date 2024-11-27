@@ -16,8 +16,8 @@ import org.springframework.context.annotation.Bean;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
-import static io.doubleloop.drivenpush.DefaultPostService.exchangeName;
 import static io.doubleloop.drivenpush.DemoMessageConsumer.queueName;
+import static io.doubleloop.drivenpush.adapter.SpringRabbitMqPostNotifier.exchangeName;
 
 @SpringBootApplication
 public class Application {
